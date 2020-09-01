@@ -1,4 +1,14 @@
 Rails.application.routes.draw do
+  devise_for :admin, controllers: {
+    sessions: 'admin/sessions',
+    passwords: 'admin/passwords',
+    registrations: 'admin/registrations'
+  }
+  devise_for :end_users, controllers: {
+    sessions: 'end_users/sessions',
+    passwords: 'end_users/passwords',
+    registrations: 'end_users/registrations'
+  }
 	root 'home#top'
 	get '/about', to: 'home#about'
 	get '/admin', to: 'admin#top'
