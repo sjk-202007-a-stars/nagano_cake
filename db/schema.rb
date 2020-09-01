@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 2020_09_01_081045) do
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
+ActiveRecord::Schema.define(version: 2020_09_01_014113) do
 
   create_table "cart_items", force: :cascade do |t|
     t.integer "item_id", null: false
