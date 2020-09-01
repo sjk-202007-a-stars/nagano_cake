@@ -1,5 +1,6 @@
 <h1>ジャンル編集</h1>
 <%= form_for [:admin, @genre] do |f| %>
+  <%= render 'admin/genres/errors', model: f.object %>
   <%= f.label :name, "ジャンル" %>
   <%= f.text_field :name %>
 
@@ -9,3 +10,5 @@
   <%= f.label :is_active, "無効" %>
   <%= f.submit "変更を保存する", class: "btn btn-primary" %>
 <% end %>
+
+<%= link_to '戻る', admin_genres_path %>

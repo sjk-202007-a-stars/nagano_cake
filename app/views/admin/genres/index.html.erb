@@ -3,11 +3,7 @@
     <h4>ジャンル一覧・追加</h4>
   </div>
   <%= form_for [:admin, @genre] do |f| %>
-    <% if @genre.errors.any? %>
-      <div id="alert">
-        <p>Genre name can't be blank</p>
-      </div>
-    <% end %>
+    <%= render 'admin/genres/errors', model: f.object %>
     <%= f.label :name, "ジャンル" %>
     <%= f.text_field :name %>
     <%= f.radio_button :is_active, true %>
