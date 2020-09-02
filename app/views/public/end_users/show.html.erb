@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="row">
+    <span class="bg-success">マイページ</span>
+    <b>登録情報</b>
+    <%= link_to "編集する", edit_end_users_path, class:"btn btn-primary col-xs-5" %>
+    <%= link_to "パスワード変更する", edit_end_user_password_path, class:"btn btn-primary col-xs-12" %>
+
+
+
+    <b>配送先</b>
+    <%= link_to "一覧を見る", shipping_addresses_path, class:"btn btn-primary col-xs-6" %><br>
+    <b>注文履歴</b>
+    <%= link_to "一覧を見る", orders_path, class:"btn btn-primary col-xs-6" %>
+  </div>
+</div>
