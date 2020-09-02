@@ -9,15 +9,16 @@ Rails.application.routes.draw do
     passwords: 'end_users/passwords',
     registrations: 'end_users/registrations'
   }
-  root 'home#top'
-  get '/about', to: 'home#about'
-  get '/admin', to: 'admin#top'
-  patch '/end_users/withdraw'
-  get '/orders/thanks'
-  get '/end_users/confirm'
-  post '/orders/confirm'
-  delete '/cart_items/destroy_all'
 
+	root 'home#top'
+	get '/about', to: 'home#about'
+	get '/admin', to: 'admin#top'
+	patch '/end_users/withdraw', to: 'public/end_users#withdraw'
+	get '/orders/thanks', to: 'public/orders#thanks'
+	get '/end_users/confirm', to: 'public/end_users#confirm'
+	post '/orders/confirm', to: 'public/orders#confirm'
+  delete '/cart_items/destroy_all', to: 'public/cart_items#destroy_all'
+  
   scope module: 'public' do
     resource :end_users, only: [:show, :edit, :update]
     resources :shipping_addresses, only: [:index, :create, :edit, :update, :destroy]
