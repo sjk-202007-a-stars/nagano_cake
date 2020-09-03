@@ -8,7 +8,7 @@ class Item < ApplicationRecord
   attachment :image
 
   def price_with_tax
-    (BigDecimal(self.price) * BigDecimal("1.1")).ceil
+    (BigDecimal(self.price) * BigDecimal("1.1")).ceil.to_s(:delimited)
   end
 
   def is_on_sale?

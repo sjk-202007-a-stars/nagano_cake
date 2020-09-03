@@ -10,7 +10,7 @@
     <p>商品名　　<span><%= @item.name %></span></p>
     <p>商品説明　　<span><%= @item.introduction %></span></p>
     <p>ジャンル　　<span><%= @item.genre.name %></span></p>
-    <p>税込価格（税抜価格）　　<span><%= @item.price_with_tax %>（<%= @item.price %>）円</span></p>
+    <p>税込価格（税抜価格）　　<span><%= @item.price_with_tax %>（<%= @item.price.to_s(:delimited) %>）円</span></p>
     <p>販売ステータス　　<span><%= @item.is_on_sale? %></span></p>
   </div>
 </div>
