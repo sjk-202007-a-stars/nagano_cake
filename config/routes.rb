@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   delete '/cart_items/destroy_all', to: 'public/cart_items#destroy_all'
   
   scope module: 'public' do
-    resource :end_users, only: [:show, :edit, :update]
+    resource :end_user, only: [:show, :edit, :update]
     resources :shipping_addresses, only: [:index, :create, :edit, :update, :destroy]
     resources :orders, only: [:index, :create, :edit, :new]
     resources :cart_items, only: [:index, :create, :update, :destroy]
