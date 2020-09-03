@@ -5,6 +5,9 @@ class Public::ItemsController < Public::Base
   end
 
   def show
+    @genres = Genre.all
+    @item = Item.find(params[:id])
+    @cart_item = CartItem.new
   end
 
   private
