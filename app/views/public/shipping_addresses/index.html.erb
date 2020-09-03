@@ -8,6 +8,7 @@
 	  </thead>
 	  <tbody>
 	    <%= form_for(@shipping_address) do |f| %>
+	    <%= render 'public/shipping_addresses/errors', model: f.object %>
 	      <div class="col-auto">
 		    <tr>
 			  <th>郵便番号(ハイフンなし)</th>
@@ -40,11 +41,14 @@
 		</tr>
 	  </thead>
 	  <tbody>
-	  	<% @shipping_addresses.each do |shipping_address| %>
+	  	<% @myshipping_addresses.each do |shipping_address| %>
 	    <tr>
-	      <th><%= shipping_address.postal_code %></th>
-	      <th><%= shipping_address.address %></th>
-	      <th><%= shipping_address.name %></th>
+	      <th><h4><%= shipping_address.postal_code %></h4></th>
+	      <th><h4><%= shipping_address.address %></h4></th>
+	      <th><h4><%= shipping_address.name %></h4></th>
+	      <th><%= link_to "編集する", edit_shipping_address_path(shipping_address.id), class: "btn btn-info active" %>
+	      	  <%= link_to "削除する", shipping_address_path(shipping_address.id), class: "btn btn-danger active", method: :delete, "data-confirm" => "本当に削除しますか？" %>
+	      </th>
 	    <tr>
 	    <% end %>
 	  </tbody>
