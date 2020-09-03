@@ -1,1 +1,50 @@
-<%= content_for?(:content) ? yield(:content) : yield %>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>NaganoCake</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <header>
+      <div class="container">
+        <nav class="nav navbar-nav navbar-left nav-image">
+          <%= link_to root_path do %>
+          <%= image_tag "logo.png" %>
+          <% end %>
+        </nav>
+        <nav>
+          <ul class="nav navbar-nav navbar-right">
+            <!-- 会員でログインしている時 -->
+            <% if end_user_signed_in? %>
+              <li class="navber-text">ようこそ、<%= current_end_user.family_name %>さん！</li>
+              <li class="nav-item"><%= button_to 'マイページ', end_users_path, method: :get, class:"btn" %></li>
+              <li class="nav-item"><%= button_to '商品一覧', items_path, method: :get, class:"btn" %></li>
+              <li class="nav-item"><%= button_to 'カート', cart_items_path, method: :get, class:"btn" %></li>
+              <li class="nav-item"><%= button_to 'ログアウト', destroy_end_user_session_path, method: :delete, class:"btn" %></li>
+
+            <!-- 管理者でログインしている時 -->
+            <% elsif admin_signed_in?%>
+              <li class="nav-item"><%= button_to ' 商品一覧', admin_items_path, method: :get, class:"btn" %></li>
+              <li class="nav-item"><%= button_to ' 会員一覧', admin_end_users_path, method: :get, class:"btn" %></li>
+              <li class="nav-item"><%= button_to ' 注文履歴一覧', admin_orders_path, method: :get, class:"btn" %></li>
+              <li class="nav-item"><%= button_to ' ジャンル一覧', admin_genres_path, method: :get, class:"btn" %></li>
+              <li class="nav-item"><%= button_to ' ログアウト', destroy_admin_session_path, method: :delete, class:"btn" %></li>
+            <!-- ログインしていない時 -->
+            <% else %>
+              <li class="nav-item"><%= button_to 'About', about_path, method: :get, class:"btn" %></li>
+              <li class="nav-item"><%= button_to '商品一覧', items_path, method: :get, class:"btn" %></li>
+              <li class="nav-item"><%= button_to '新規登録', new_end_user_registration_path, method: :get, class:"btn" %></li>
+              <li class="nav-item"><%= button_to 'ログイン', new_end_user_session_path, method: :get, class:"btn" %></li>
+            <% end %>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <%= yield %>
+  </body>
+</html>
