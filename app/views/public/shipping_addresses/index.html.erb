@@ -1,0 +1,50 @@
+<div class="container">
+  <div class="row">
+    <table class="table-borderless">
+      <thead>
+	    <tr>
+		  <th><h3>配送先登録/一覧</h3></th>
+		  </tr>
+	  </thead>
+	  <tbody>
+	    <%= form_for(@shipping_address) do |f| %>
+	      <div class="col-auto">
+		    <tr>
+			  <th>郵便番号(ハイフンなし)</th>
+			  <th><%= f.text_field :postal_code %></th>
+			  <br>
+		    </tr>
+		    <tr>
+			  <th>住所</th>
+			  <th><%= f.text_field :address %><br></th>
+		    </tr>
+		    <tr>
+			  <th>宛名</th>
+			  <th><%= f.text_field :name %></th>
+			</tr>
+	      </div>
+	  </tbody>
+	</table>
+	    <%= f.submit '登録する', class: "btn btn-success active" %>
+        <% end %>
+  </div>
+  <br><br>
+  <div class="row">
+    <table class="table-bordered">
+      <thead>
+	    <tr>
+		  <th><h4>郵便番号</h4></th>
+		  <th><h4>住所</h4></th>
+		  <th><h4>宛名</h4></th>
+		  <th></th>
+		</tr>
+	  </thead>
+	  <tbody>
+	  	<% @shipping_addresses.each do |shipping_address| %>
+	    <tr>
+	      <th><%= shipping_address.postal_code %></th>
+	      <th><%= shipping_address.address %></th>
+	      <th><%= shipping_address.name %></th>
+	    <tr>
+	    <% end %>
+	  </tbody>
