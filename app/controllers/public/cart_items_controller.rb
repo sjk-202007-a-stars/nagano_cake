@@ -1,12 +1,19 @@
 class Public::CartItemsController < Public::Base
   def index
     @cart_items = CartItem.where(end_user_id: current_end_user.id)
-    @total_price = 0
+    @subtotal_price = 0 #ビューで使う変数の初期化
   end
 
   def create
+    #同じ商品がカートに入っているか検索
+    existing_cart_item = CartItem.find_by(end_user_id: current_end_user.id, item_id: cart_item_params[:item_id])
+
     @cart_item = CartItem.new(cart_item_params)
-    if @cart_item.save
+    if existing_cart_item #同じ商品がカートに入っていたら個数を上書きする
+      existing_cart_item.quantity = @cart_item.quantity
+      existing_cart_item.save
+      redirect_to cart_items_path
+    elsif @cart_item.save
       redirect_to cart_items_path
     else
       flash[:alert] = "Please select a number"
