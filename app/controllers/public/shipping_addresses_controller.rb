@@ -1,10 +1,6 @@
 class Public::ShippingAddressesController < Public::Base
   def index
-    # @end_user = current_end_user
-    # @shipping_addresses = ShippingAddresses.find_by(current_end_user.id)
-    @shipping_addresses = ShippingAddress.all
-    shipping_addresses = @shipping_addresses
-    @myshipping_addresses = current_end_user.shipping_addresses
+    @shipping_addresses = ShippingAddress.where(end_user_id: current_end_user.id)
     @shipping_address = ShippingAddress.new
   end
 
@@ -14,11 +10,8 @@ class Public::ShippingAddressesController < Public::Base
     if @shipping_address.save
       redirect_to shipping_addresses_path
     else
-    	@shipping_addresses = ShippingAddress.all
-      shipping_addresses = @shipping_addresses
-      @myshipping_addresses = current_end_user.shipping_addresses
-      @shipping_address = ShippingAddress.new
-      render :index
+      @shipping_addresses = ShippingAddress.where(end_user_id: current_end_user.id)
+      render 'index'
     end
   end
 
@@ -27,12 +20,11 @@ class Public::ShippingAddressesController < Public::Base
   end
 
   def update
-  	shipping_address = ShippingAddress.find(params[:id])
-    if shipping_address.update(shipping_address_params)
+  	@shipping_address = ShippingAddress.find(params[:id])
+    if @shipping_address.update(shipping_address_params)
       redirect_to shipping_addresses_path
     else
-    	@shipping_address = ShippingAddress.find(params[:id])
-      render :edit
+      render 'edit'
     end
   end
 

@@ -9,24 +9,24 @@
 		  </tr>
 	    </thead>
 	    <tbody>
-	      <div class="col-auto">
-		    <tr>
-			  <th>郵便番号(ハイフンなし)</th>
-			  <th><%= f.text_field :postal_code %></th>
-			  <br>
-		    </tr>
-		    <tr>
-			  <th>住所</th>
-			  <th><%= f.text_field :address %><br></th>
-		    </tr>
-		    <tr>
-			  <th>宛名</th>
-			  <th><%= f.text_field :name %></th>
-			</tr>
-	      </div>
+		  <tr>
+			<th>郵便番号(ハイフンなし)</th>
+			<th><%= f.text_field :postal_code %></th>
+		  </tr>
+		  <tr>
+		    <th>住所</th>
+			<th><%= f.text_field :address %><br></th>
+		  </tr>
+		  <tr>
+		    <th>宛名</th>
+			<th><%= f.text_field :name %></th>
+	      </tr>
+	      <tr>
+	      	<th></th>
+	      	<th><%= f.submit '編集する', class: "btn btn-info active" %></th>
+	      </tr>
 	    </tbody>
 	  </table>
-	  <%= f.submit '編集する', class: "btn btn-info active" %>
     <% end %>
   </div>
 </div>
