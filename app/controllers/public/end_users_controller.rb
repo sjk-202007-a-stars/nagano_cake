@@ -10,7 +10,7 @@ class Public::EndUsersController < Public::Base
   def update
   	@end_user = current_end_user
   	if @end_user.update(end_user_params)
-  	redirect_to end_users_path
+  	redirect_to end_user_path
   	else
   		render 'edit'
   	end

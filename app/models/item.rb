@@ -6,6 +6,8 @@ class Item < ApplicationRecord
 
   belongs_to :genre
   attachment :image
+  has_many :order_items
+  has_many :orders, through: :order_items
 
   def price_with_tax
     (BigDecimal(self.price) * BigDecimal("1.1")).ceil

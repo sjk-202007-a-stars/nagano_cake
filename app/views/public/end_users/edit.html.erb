@@ -1,14 +1,14 @@
 <div class="container">
-    <div class="row">
-        <div class="col-xs-12">
-            <h2>
-                <span class="bg-success">登録情報編集</span>
-            </h2>
-        </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <h2>
+        <span class="bg-success">登録情報編集</span>
+      </h2>
     </div>
-    <div class="row">
-    	<%= form_for(@end_user) do |f| %>
-			<table>
+  </div>
+  <div class="row">
+  	<%= form_for(@end_user) do |f| %>
+			<table class="table">
 				<tr>
 					<td>名前</td>
 					<td>
@@ -41,17 +41,17 @@
 				</tr>
 				<tr>
 					<td>住所</td>
-					<td><%= f.text_field :adress %></td>
+					<td><%= f.text_field :address %></td>
 				</tr>
 				<tr>
 					<td>電話番号(ハイフンなし)</td>
-					<td><%= f.text_field :phone_numbe %></td>
+					<td><%= f.text_field :phone_number %></td>
 				</tr>
 			</table>
+			<div class="col-xs-offset-2 col-sm-10">
+				<%= f.submit "編集内容を保存する", class:"btn btn-primary" %>
+				<%= link_to "退会する", "/end_users/confirm", class:"btn btn-danger" %>
+			</div>
 		<% end %>
-	</div>
-	<div class="col-xs-offset-2 col-sm-10">
-		<%= f.submit "編集内容を保存する", class:"btn btn-primary" %>
-		<%= link_to "退会する", "/end_users/confirm", class:"btn btn-danger" %>
 	</div>
 </div>

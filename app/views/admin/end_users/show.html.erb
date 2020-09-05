@@ -1,0 +1,54 @@
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <h2>
+                <span class="bg-success">
+                	<%= @end_user.family_name %><%= @end_user.first_name %>さんの会員詳細
+                </span>
+            </h2>
+        </div>
+    </div>
+	<div class="col-xs-3">
+		<table class="table">
+			<tr>
+				<td>顧客ID</td>
+				<td>
+					<%= @end_user.id %>
+					<% if @end_user.is_deleted %>
+						<button type="button" class="btn btn-danger btn-xs">退会済み</button>
+						<% else %>
+						<button type="button" class="btn btn-info btn-xs">有効会員</button>
+					<% end %>
+				</td>
+			</tr>
+			<tr>
+				<td>氏名</td>
+				<td><%= @end_user.family_name %><%= @end_user.first_name %></td>
+			</tr>
+			<tr>
+				<td>ﾌﾘｶﾞﾅ</td>
+				<td><%= @end_user.family_name_kana %><%= @end_user.first_name_kana %></td>
+			</tr>
+			<tr>
+				<td>郵便番号</td>
+				<td><%= @end_user.postal_code %></td>
+			</tr>
+			<tr>
+				<td>住所</td>
+				<td><%= @end_user.address %></td>
+			</tr>
+			<tr>
+				<td>電話番号</td>
+				<td><%= @end_user.phone_number %></td>
+			</tr>
+			<tr>
+				<td>メールアドレス</td>
+				<td><%= @end_user.email %></td>
+			</tr>
+		</table>
+	</div>
+	<div class="col-sm-10">
+		<%= link_to "編集する", edit_admin_end_user_path(@end_user), class:"btn btn-primary" %>
+		<%= link_to "注文履歴一覧を見る", admin_orders_path, class:"btn btn-primary" %>
+	</div>
+</div>
