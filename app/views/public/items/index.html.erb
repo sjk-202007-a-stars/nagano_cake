@@ -1,0 +1,26 @@
+<div class="container">
+  <%= render 'public/items/genre_search', genres: @genres %>
+  <div class="col-xs-9">
+    <h4>
+      <% if @genre %>
+        <%= @genre.name %>
+      <% else %>
+        商品
+      <% end %>一覧
+    </h4><p>全<%= @items.total_count %>件</p>
+    <% @items.each do |item| %>
+      <div class="item-wrapper">
+        <%= link_to item_path(item) do %>
+          <div class="item-image">
+            <%= attachment_image_tag item, :image, :fill, 150, 100, fallback: "no_image.jpg", size: '150x100' %>
+          </div>
+          <div class="item-description">
+            <p><%= item.name %></p>
+            <p>￥ <%= item.price_with_tax %></p>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+  <%= paginate @items %>
+</div>

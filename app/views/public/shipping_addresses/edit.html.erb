@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="row">
+  	<%= form_for(@shipping_address) do |f| %>
+  	<%= render 'public/shipping_addresses/errors', model: f.object %>
+      <table class="table-borderless">
+        <thead>
+	      <tr>
+		    <th><h3>配送先編集</h3></th>
+		  </tr>
+	    </thead>
+	    <tbody>
+		  <tr>
+			<th>郵便番号(ハイフンなし)</th>
+			<th><%= f.text_field :postal_code %></th>
+		  </tr>
+		  <tr>
+		    <th>住所</th>
+			<th><%= f.text_field :address %><br></th>
+		  </tr>
+		  <tr>
+		    <th>宛名</th>
+			<th><%= f.text_field :name %></th>
+	      </tr>
+	      <tr>
+	      	<th></th>
+	      	<th><%= f.submit '編集する', class: "btn btn-info active" %></th>
+	      </tr>
+	    </tbody>
+	  </table>
+    <% end %>
+  </div>
+</div>

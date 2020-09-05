@@ -1,0 +1,36 @@
+<div class="container">
+  <%= render 'public/items/genre_search', genres: @genres %>
+  <div class="col-xs-4">
+    <div class="items-image">
+      <%= attachment_image_tag @item, :image, :fill, 450, 300, fallback: "no_image.jpg", size: '450x300' %>
+    </div>
+  </div>
+  <div class="col-xs-4">
+    <div class="item-description">
+      <span class="item-title">
+        <%= @item.name %>
+      </span>
+      <p class="item-introduction">
+        <%= @item.introduction %>
+      </p>
+      <p class="item-price">
+        <span>￥ 
+          <%= @item.price_with_tax %>
+        </span>（税込）
+      </p>
+      <% if @item.sales_status == false %>
+        </p>売切れ<p>
+      <% end %>
+    </div>
+    <% if end_user_signed_in? && @item.sales_status == true %>
+      <div class="row">
+        <%= form_for(@cart_item) do |f| %>
+          <%= f.select :quantity, (1..30), {include_blank: "個数選択"} %>
+          <%= f.hidden_field :item_id, value: @item.id %>
+          <%= f.hidden_field :end_user_id, value: current_end_user.id %>
+          <%= f.submit "カートに入れる", class: "btn btn-primary" %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>
