@@ -26,7 +26,7 @@
 						<% end %>
 					</td>
 			 		<td><%= order.end_user.family_name %><%= order.end_user.first_name %></td>
-		  		<td><%= @total_order_quantity %></td>
+		  		<td><%= order.total_count %></td>
 		  		<td><%= order.status %></td>
 			  </tr>
 			<% end %>

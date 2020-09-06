@@ -1,14 +1,21 @@
 class Admin::OrdersController < Admin::Base
   def index
   	@orders = Order.all
-  	@total_order_quantity = 0
-  	@order_items = OrderItem.all
-  	@order_items each do |order_item|
-  	  @total_order_quantity += order_item.quantity
-  	end
+    
   end
 
   def show
-  	@order = Order.find(params[:end_user_id])
+  	@order = Order.find(params[:id])
+  end
+  def update
+  	@order = Order.find(params[:id])
+  	if @order.update(order_params)
+  	  redirect_to admin_order(@order)
+  	end
+  end
+
+  private
+  def order_params
+  	params.require(:order).permit(:status)
   end
 end
