@@ -11,5 +11,4 @@ class EndUser < ApplicationRecord
   validates :family_name_kana, :first_name_kana, presence: true, format: { with: /\A[\p{katakana}\p{blank}ー－]+\z/}
 
   has_many :shipping_addresses
-
 end

@@ -4,7 +4,9 @@ class Admin::OrderItemsController < Admin::Base
   	@order = Order.find(params[:order_id])
   	@order_item = @order.order_item.find(params[:id])
     @order_item.update(order_item_params)
-
+    if @order.update(order_params)
+  	    redirect_to admin_order_path(@order)
+  	end
   end
 
   private

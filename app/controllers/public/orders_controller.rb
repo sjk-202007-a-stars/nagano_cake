@@ -14,4 +14,5 @@ class Public::OrdersController < Public::Base
    	if @order.end_user_id != current_end_user.id
       redirect_to orders_path
     end
+  end
 end

@@ -1,5 +1,4 @@
 class Public::EndUsersController < Public::Base
-<<<<<<< HEAD
   def show
     @end_user = current_end_user
   end
