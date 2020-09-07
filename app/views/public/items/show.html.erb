@@ -25,6 +25,7 @@
     <% if end_user_signed_in? && @item.sales_status == true %>
       <div class="row">
         <%= form_for(@cart_item) do |f| %>
+          <%= render 'public/items/errors', model: f.object %>
           <%= f.select :quantity, (1..30), {include_blank: "個数選択"} %>
           <%= f.hidden_field :item_id, value: @item.id %>
           <%= f.hidden_field :end_user_id, value: current_end_user.id %>

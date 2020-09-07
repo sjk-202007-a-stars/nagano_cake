@@ -17,14 +17,15 @@
 @import "bootstrap";
 
 
-.item-wrapper {
-  float: left;
-  margin-right: 15px;
+
+
+.header {
+	height: 100px;
+	padding: 0 80px;
 }
 
 nav {
-	height: 80px;
-	line-height: 80px;
+	line-height: 100px;
 }
 
 .navber-text {
@@ -42,3 +43,4 @@ nav {
 .search-box {
 	line-height: 25px;
 }
+
