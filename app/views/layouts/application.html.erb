@@ -34,6 +34,12 @@
               <li class="nav-item"><%= button_to ' 注文履歴一覧', admin_orders_path, method: :get, class:"btn" %></li>
               <li class="nav-item"><%= button_to ' ジャンル一覧', admin_genres_path, method: :get, class:"btn" %></li>
               <li class="nav-item"><%= button_to ' ログアウト', destroy_admin_session_path, method: :delete, class:"btn" %></li>
+              <li class="nav-item">
+              <%= form_tag do %>
+                <%= text_field_tag(:word, '', placeholder:"search", class:"search-box") %>
+                <%= submit_tag '検索', class:"btn" %>
+              <% end %>
+              </li>
             <!-- ログインしていない時 -->
             <% else %>
               <li class="nav-item"><%= button_to 'About', about_path, method: :get, class:"btn" %></li>
