@@ -12,5 +12,6 @@ class EndUser < ApplicationRecord
   
   has_many :cart_items
   has_many :shipping_addresses
+  has_many :orders
 
 end
