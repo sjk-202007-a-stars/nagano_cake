@@ -31,4 +31,3 @@ Item.create!(genre_id: 3, name: "マカロンセット（16個)", introduction: 
             price: 2000,sales_status: true)
 Item.create!(genre_id: 1, name: "バナナケーキ", introduction: "編集中",
             price: 980,sales_status: true)
-

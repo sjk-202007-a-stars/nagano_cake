@@ -1,37 +1,3 @@
 // Place all the styles related to the home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-
-.top-visual {
-	width: 700px;
-	height: 300px;
-	background-color: black;  /*後々画像挿入*/
-	position: relative;
-}
-
-.top-text-visual {
-	background-color: rgba(255,255,255,0.5);
-	width: 350px;
-	height: 150px;
-	position: absolute;
-	top: 25%;
-	left: 25%;
-	display: flex;
-	align-items: center;
-}
-
-.about-headline {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	font-size: 72px;
-	margin: 80px auto;
-}
-
-.about-text {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	text-align: center;
-	font-size: 24px;
-}
