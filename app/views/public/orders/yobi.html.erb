@@ -5,8 +5,8 @@
     </div>
   </div>
   <!-- 支払方法 -->
-  <%= form_with(model: @order, local: true, url: {action: 'confirm'}) do |f| %>
   <div class="row">
+    <%= form_with(model: @order, local: true, url: {action: 'confirm'}) do |f| %>
     <h2><strong><%= f.label :支払方法 %></strong></h2>
     <div class="col-lg-4">
       <label class="btn btn-outline-secondary active" style="width:50%">

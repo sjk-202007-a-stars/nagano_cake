@@ -60,7 +60,7 @@ class Public::OrdersController < Public::Base
     end
   end
 
-  def comfirm
+  def confirm
     @order = Order.new
     @cart_items = current_end_user.cart_items
     @order.payment_method = params[:order][:payment_method]
@@ -74,7 +74,7 @@ class Public::OrdersController < Public::Base
       when 2
         @sta = params[:order][:address].to_i
         @address = ShippingAddress.find(@sta)
-        @order.postal_code = @address.post_code
+        @order.postal_code = @address.postal_code
         @order.address = @address.address
         @order.name = @address.name
       when 3
