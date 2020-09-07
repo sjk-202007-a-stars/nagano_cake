@@ -5,6 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
 Genre.create!(name: "ケーキ", is_active: true)
 Genre.create!(name: "プリン・ゼリー", is_active: true)
 Genre.create!(name: "クッキー・焼き菓子", is_active: true)

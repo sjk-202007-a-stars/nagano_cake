@@ -1,4 +1,4 @@
 class AdminController < ApplicationController
-  def top
-  end
+	def top
+	end
 end

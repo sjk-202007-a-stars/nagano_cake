@@ -18,12 +18,14 @@
 
 
 
-.item-wrapper {
-  float: left;
+
+.header {
+	height: 100px;
+	padding: 0 80px;
 }
+
 nav {
-	height: 80px;
-	line-height: 80px;
+	line-height: 100px;
 }
 
 .navber-text {
@@ -37,3 +39,8 @@ nav {
 .nav-image img {
 	height: 50px
 }
+
+.search-box {
+	line-height: 25px;
+}
+
