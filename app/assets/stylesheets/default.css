@@ -136,6 +136,15 @@ body {
 	padding: 0 10px;
 }
 
+.daily-order {
+	font-size: 28px;
+	margin-top: 50px;
+}
+
+.mrg {
+	margin-left: 50px;
+}
+
 
 #error_explanation {
 	padding: 10px 0;
