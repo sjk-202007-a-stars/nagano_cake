@@ -17,15 +17,16 @@
           </tr>
         </thead>
         <tbody>
+          <% sum_all = 0 %>
           <% @cart_items.each do |cart_item| %>
             <tr>
               
               <td><%= cart_item.item.name %></td>
               <th><%= cart_item.item.price_with_tax %></th>
               <th><%= cart_item.quantity %></th>
-              <th><%= cart_item.sub_total.ceil.to_i(:delimited) %></th>
+              <th><%= cart_item.sub_total.ceil.to_s(:delimited) %></th>
             </tr>
-            <% @subtotal_price += cart_item.sub_total %>
+            <% sum_all += cart_item.sub_total %>
           <% end %>
         </tbody>
       </table>
@@ -36,16 +37,16 @@
     <table class="table-bordered">
       <tr>
         <th>送料</th>
-        <th><%= @order.postage %>円</th>
+        <th><%= Order::POSTAGE %>円</th>
       </tr>
       <tr>
         <th>商品合計</th>
-        <th><%= @subtotal_price.ceil.to_i(:delimited) %></th>
+        <th><%= sum_all.ceil.to_s(:delimited) %></th>
       </tr>
       <tr>
         <th>請求金額</th>
-        <th><% billling_amount = subtotal_price + @order.postage.to_i %>
-          <%= billling_amount.to_i %></th>
+        <th><% subtotal_price = sum_all + @order.postage.to_i %>
+          <%= subtotal_price.ceil.to_s(:delimited) %></th>
       </tr>
     </table>
   </div>
@@ -57,7 +58,7 @@
       <h3>支払方法</h3>
     </div>
     <div class="col-lg-4">
-      <%= payment_method(@order.payment_method) %>
+      <%= @order.payment_method %>
     </div>
   </div>
 
@@ -73,9 +74,11 @@
   </div>
 
   <%= f.hidden_field :end_user_id, :value => current_end_user.id %>
-  <%= f.hidden_field :postal_code, :value => "#{@order.posttal_code}" %>
+  <%= f.hidden_field :postal_code, :value => "#{@order.postal_code}" %>
   <%= f.hidden_field :address, :value => "#{@order.address}" %>
-  <%= f.hidden_field :name, :value => "#{@name.addressee}" %>
+  <%= f.hidden_field :name, :value => "#{@order.name}" %>
+  <%= f.hidden_field :subtotal_price, :value => sum_all %>
+  <%= f.hidden_field :payment_method, :value => @order.payment_method %>
 </div>
 
 <div class="row space">

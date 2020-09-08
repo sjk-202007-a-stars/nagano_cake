@@ -1,6 +1,6 @@
 class Public::OrdersController < Public::Base
   before_action :authenticate_end_user!
-  before_action :set_end_user
+
 
 
   def new
@@ -17,14 +17,16 @@ class Public::OrdersController < Public::Base
   	if current_end_user.cart_items.exists?
       @order = Order.new(order_params)
       @order.end_user_id = current_end_user.id
+      @order.postage = Order::POSTAGE
+      # Orederモデルで定義
 
       # 住所のラジオボタン選択に応じて引数を調整
       @add = params[:order][:add].to_i
       case @add
         when 1
-          @order.postal_code = @end_user.postal_code
-          @order.address = @end_user.address
-          @order.name = full_name(@end_user)
+          @order.postal_code = current_end_user.postal_code
+          @order.address = current_end_user.address
+          @order.name = full_name(current_end_user)
         when 2
           @order.postal_code = params[:order][:postal_code]
           @order.address = params[:order][:address]
@@ -52,7 +54,7 @@ class Public::OrdersController < Public::Base
         order_item.order_id = @order.id
         order_item.item_id = cart_item.item_id
         order_item.quantity = cart_item.quantity
-        order_item.ordering_price = cart_item.ordering.price
+        order_item.ordering_price = cart_item.sub_total
         order_item.save
         cart_item.destroy #order_itemに情報を移したらcart_itemは消去
       end
@@ -63,14 +65,14 @@ class Public::OrdersController < Public::Base
   def confirm
     @order = Order.new
     @cart_items = current_end_user.cart_items
-    @order.payment_method = params[:order][:payment_method]
+    @order.payment_method = params[:order][:payment_method].to_i
     # 住所のラジオボタン選択に応じて引数を調整
     @add = params[:order][:add].to_i
     case @add
       when 1
-        @order.postal_code = @end_user.postal_code
-        @order.address = @end_user.address
-        @order.name = @end_user.family_name + @end_user.first_name
+        @order.postal_code = current_end_user.postal_code
+        @order.address = current_end_user.address
+        @order.name = current_end_user.family_name + current_end_user.first_name
       when 2
         @sta = params[:order][:address].to_i
         @address = ShippingAddress.find(@sta)
@@ -88,13 +90,10 @@ class Public::OrdersController < Public::Base
   end
 
   private
-  def set_end_user
-    @end_user = current_end_user
-  end
 
   def order_params
     params.require(:order).permit(
-      :created_at, :address, :name, :status, :payment_method, :postal_code, :postage,
+      :created_at, :address, :name, :status, :payment_method, :postal_code, :postage, :subtotal_price,
       order_items_attributes: [:order_id, :item_id, :quantity, :ordering_price, :making_status]
       )
   end

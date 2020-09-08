@@ -1,81 +1,89 @@
-<div class="container">
+<div class="col-lg-10">
   <div class="row">
-  	<div class="col-lg-4">
-  	  <h3>注文情報入力</h3>
-    </div>
-  </div>
-  <!-- 支払方法 -->
-  <div class="row">
-    <%= form_with(model: @order, local: true, url: {action: 'confirm'}) do |f| %>
-    <h2><strong><%= f.label :支払方法 %></strong></h2>
-    <div class="col-lg-4">
-      <label class="btn btn-outline-secondary active" style="width:50%">
-        <%= f.radio_button :payment_method, true, {checked: true} %> クレジットカード
-      </label>
-      <label class="btn btn-outline-secondary" style="width:50%">
-        <%= f.radio_button :payment_method, false, {} %> 銀行振込
-      </label>
-    </div>
+    <h2>注文情報確認</h2>
   </div>
 
-  <!-- お届け先 -->
+  <%= form_with(model: @order, local: true) do |f| %>
+
   <div class="row">
-    <h2><strong><%= f.label :お届け先 %></strong></h2>
     <div class="col-lg-8">
-      <p>
-        <label><%= f.radio_button :add, 1, checked: true, checked: "checked" %>ご自身の住所</label><br>
-        <%= @end_user.postal_code %>
-        <%= @end_user.address %>
-        <%= @end_user.family_name %><%= @end_user.first_name %>
-      </p>
-      <p>
-        <label><%= f.radio_button :add, 2, style: "display: inline-block" %>登録住所から選択</label><br>
-        <%= f.collection_select :address, @end_user.shipping_addresses, :id, :address %>
-      </p>
-      <p><label><%= f.radio_button :add, 3 %>新しいお届け先</label></p>
-      <div class="row">
-        <div class="col-lg-12">
-          <%= f.fields_for :new_add do |na| %>
-            <div class="row">
-              <div class="col-lg-3">
-                <strong>郵便番号(ハイフンなし)</strong>
-              </div>
-              <div class="col-lg-6">
-                <%= na.text_field :postal_code, class: 'form-control' %>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-lg-3">
-                <strong>住所</strong>
-              </div>
-              <div class="col-lg-6">
-                <%= na.text_field :address, class: 'form-control' %>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-lg-3">
-                <strong>宛名</strong>
-              </div>
-              <div class="col-lg-6">
-                <%= na.text_field :name, class: 'form-control' %>
-              </div>
-            </div>
+      <table class="table-bordered">
+        <thead>
+          <tr>
+            <th><h4>商品名</h4></th>
+            <th><h4>単価（税込）</h4></th>
+            <th><h4>数量</h4></th>
+            <th><h4>小計</h4></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @cart_items.each do |cart_item| %>
+            <tr>
+              
+              <td><%= cart_item.item.name %></td>
+              <th><%= cart_item.item.price_with_tax %></th>
+              <th><%= cart_item.quantity %></th>
+              <th><%= cart_item.sub_total.ceil.to_s(:delimited) %></th>
+            </tr>
+            <% subtotal_price += cart_item.sub_total %>
           <% end %>
-        </div>
-      </div>
+        </tbody>
+      </table>
     </div>
   </div>
 
-  <!-- サブミットボタン -->
-  <div class="row">
-    <div class="col-lg-2 offset-lg-7">
-      <%= f.submit "確認画面へ進む", class: "btn btn-info"%>
+  <div class="col-lg-4">
+    <table class="table-bordered">
+      <tr>
+        <th>送料</th>
+        <th><%= @order.postage %>円</th>
+      </tr>
+      <tr>
+        <th>商品合計</th>
+        <th><%= @subtotal_price.ceil.to_s(:delimited) %></th>
+      </tr>
+      <tr>
+        <th>請求金額</th>
+        <th><% billling_amount = subtotal_price + @order.postage.to_i %>
+          <%= billling_amount.to_i %></th>
+      </tr>
+    </table>
+  </div>
+
+
+
+  <div class="row space-sm">
+    <div class="col-lg-2">
+      <h3>支払方法</h3>
+    </div>
+    <div class="col-lg-4">
+      <%= payment_method(@order.payment_method) %>
     </div>
   </div>
-  <% end %>
+
+  <div class="row space-sm">
+    <div class="col-lg-2">
+      <h3>お届け先</h3>
+    </div>
+    <div class="col-lg-4">
+      <%= @order.postal_code %>
+      <%= @order.address %>
+      <%= @order.name %>
+    </div>
+  </div>
+
+  <%= f.hidden_field :end_user_id, :value => current_end_user.id %>
+  <%= f.hidden_field :postal_code, :value => "#{@order.posttal_code}" %>
+  <%= f.hidden_field :address, :value => "#{@order.address}" %>
+  <%= f.hidden_field :name, :value => "#{@name.addressee}" %>
+</div>
+
+<div class="row space">
+  <div class="col-lg-2 offset-lg-5">
+    <%= f.submit "購入を確定する", class: "btn btn-success active" %>
+  </div>
 </div>
 
 
-
-
-
+<% end %>
+</div>
