@@ -1,14 +1,21 @@
-<h1>ジャンル編集</h1>
-<%= form_for [:admin, @genre] do |f| %>
-  <%= render 'admin/genres/errors', model: f.object %>
-  <%= f.label :name, "ジャンル" %>
-  <%= f.text_field :name %>
+<div class="container">
+	<h3 class="item-headline">ジャンル編集</h3>
+	<div class="genre-form">
+		<%= form_for [:admin, @genre] do |f| %>
+		    <%= render 'admin/genres/errors', model: f.object %>
+		    <%= f.label :name, "ジャンル", class:"genre-form-item" %>
+		    <%= f.text_field :name, class:"genre-form-item"  %>
+		    <span class="genre-form-item">
+			    <%= f.radio_button :is_active, true %>
+			    <%= f.label :is_active, "有効" %>
+		    </span>
+		    <span class="genre-form-item">
+			    <%= f.radio_button :is_active, false %>
+			    <%= f.label :is_active, "無効" %>
+		    </span>
+		    <%= f.submit "変更を保存する", class: "btn btn-primary" %>
+		<% end %>
+	</div>
 
-  <%= f.radio_button :is_active, true %>
-  <%= f.label :is_active, "有効" %>
-  <%= f.radio_button :is_active, false %>
-  <%= f.label :is_active, "無効" %>
-  <%= f.submit "変更を保存する", class: "btn btn-primary" %>
-<% end %>
-
-<%= link_to '戻る', admin_genres_path %>
+	<%= link_to '戻る', admin_genres_path, class:"btn btn-sm btn-info" %>
+</div>

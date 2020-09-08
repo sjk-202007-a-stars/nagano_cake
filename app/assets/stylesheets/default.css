@@ -89,7 +89,8 @@ body {
 
 .item-headline {
 	background-color: rgba(255,255,255,0.4);
-	width: 150px;
+	/*width: 150px;*/
+	display: inline-block;
 	text-align: center;
 }
 
@@ -125,6 +126,14 @@ body {
 
 .item-price {
 	font-size: 20px;
+}
+
+.genre-form {
+	margin: 50px 0;
+}
+
+.genre-form-item {
+	padding: 0 10px;
 }
 
 
