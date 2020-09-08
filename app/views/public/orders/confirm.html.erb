@@ -19,8 +19,8 @@
         <tbody>
           <% @cart_items.each do |cart_item| %>
             <tr>
-              <td><%= attachment_image_tag cart_item.item, :image, :fill, 100, 100, fallback: "no_img.jpg" %>
-                  <%= cart_item.item.name %></td>
+              
+              <td><%= cart_item.item.name %></td>
               <th><%= cart_item.item.price_with_tax %></th>
               <th><%= cart_item.quantity %></th>
               <th><%= cart_item.sub_total.ceil.to_i(:delimited) %></th>
