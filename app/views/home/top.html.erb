@@ -1,13 +1,13 @@
-<div class="container">
+<div class="container main">
 	<div class="row">
 		<!-- ジャンル検索サイドバー表示 -->
-		<%= render 'public/items/genre_search', genres: @genres %>
+		 <%= render 'public/items/genre_search', genres: @genres %>
 		<div class="col-xs-9">
 		<!-- 画像背景 -->
 			<div class="top-visual">
 				<div class="top-text-visual">
 					<p class="top-text">
-					ようこそ、NaganoCakeへ！<br>
+					ようこそ、<strong>ながのCAKE</strong> へ！<br>
 					このサイトは、ケーキ販売のECサイトになります。<br>
 					会員でない方も商品の閲覧はできますが、<br>
 					購入には会員登録が必要になります。<br>
@@ -16,7 +16,8 @@
 			</div>
 
 			<!-- オススメ商品の表示 -->
-			<h2>オススメ商品</h2>
+			<div class="recommendation">
+			<h2 class="recommendation-head"><strong>オススメ商品</strong></h2>
 			<% @items.each do |item| %>
       			<div class="item-wrapper">
         			<%= link_to item_path(item) do %>
@@ -32,6 +33,7 @@
     		<% end %>
     		<div class="col-xs-9 col-xs-offset-9">
     			<%= link_to 'もっと見る>', items_path %>
+    		</div>
     		</div>
     	</div>
     </div>

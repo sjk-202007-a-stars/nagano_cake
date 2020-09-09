@@ -15,4 +15,10 @@ class Order < ApplicationRecord
     end
   	return @total_order_quantity
   end
+
+  POSTAGE = 800
+  # 送料定義
+
+  enum payment_method: { クレジットカード: 0, 銀行振込: 1 }
+  
 end

@@ -16,17 +16,13 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-.row {
-  margin: 30px;
-}
-.item-wrapper {
-  float: left;
-  margin-right: 15px;
+.header {
+	height: 100px;
+	padding: 0 80px;
 }
 
 nav {
-	height: 80px;
-	line-height: 80px;
+	line-height: 100px;
 }
 
 .navber-text {
@@ -39,4 +35,20 @@ nav {
 
 .nav-image img {
 	height: 50px;
+
+}
+
+
+i {
+	font-size: 48px;
+	padding-bottom: 20px;
+}
+
+
+.search-box {
+	line-height: 25px;
+}
+
+.field_with_errors {
+	display: contents;
 }
