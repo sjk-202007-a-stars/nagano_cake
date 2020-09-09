@@ -1,1 +1,6 @@
-<h1>top</h1>
+<div class="container">
+	<h3 class="item-headline">管理者画面</h3>
+	<p class="daily-order">本日の注文件数
+		<sapn class="mrg"><%= link_to orders_path do %><%= @order.count %><% end %> 件</sapn>
+	</p>
+</div>
