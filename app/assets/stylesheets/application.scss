@@ -16,7 +16,9 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-
+.row {
+  margin: 30px;
+}
 .item-wrapper {
   float: left;
   margin-right: 15px;

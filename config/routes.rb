@@ -13,7 +13,7 @@ Rails.application.routes.draw do
 	root 'home#top'
 	get '/about', to: 'home#about'
 	get '/admin', to: 'admin#top'
-	patch '/end_users/withdraw', to: 'public/end_users#withdraw'
+	patch '/end_users/withdraw', to: 'public/end_users#withdraw', as: 'withdraw'
 	get '/orders/thanks', to: 'public/orders#thanks'
 	get '/end_users/confirm', to: 'public/end_users#confirm'
 	post '/orders/confirm', to: 'public/orders#confirm'

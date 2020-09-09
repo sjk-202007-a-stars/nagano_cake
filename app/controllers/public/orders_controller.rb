@@ -1,5 +1,5 @@
 class Public::OrdersController < Public::Base
- before_action :authenticate_user!
+ before_action :authenticate_end_user!
  before_action :correct_user, only: [:show]
   def index
   	@orders = Order.where(end_user_id: current_end_user.id)

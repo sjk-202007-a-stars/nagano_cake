@@ -32,4 +32,13 @@ class EndUsers::SessionsController < Devise::SessionsController
   def after_sign_out_for(resource)
     root_path
   end
+
+  def reject_user
+    @end_user = EndUser.find_by(name: params[:name].downcase)
+    if @end_user
+      if (@end_user.valid_password?(params[:name][:password]) && (@end_user.active_for_authentication? == false))
+        flash[:error] = "ユーザーの登録情報がありません。"
+        redirect_to new_user_session_path
+      end
+  end
 end

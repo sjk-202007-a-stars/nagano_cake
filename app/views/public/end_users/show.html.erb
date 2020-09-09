@@ -1,23 +1,23 @@
 <div class="container">
   <div class="row">
-    <div class="col-xs-12">
-      <h2>
-        <span class="bg-success">マイページ</span>
-      </h2>
+    <div class="col-lg-9 col-lg-offset-1">
+      <h4>マイページ</h4>
     </div>
-    <table class="col-xs-4">
+  </div>
+  <div class="row">
+    <table class="col-sm-5">
       <tr>
         <td><strong>登録情報</strong></td>
         <td>
           <%= link_to "編集する", edit_end_user_path,class:"btn btn-primary" %>
-          <%= link_to "パスワード変更する", edit_end_user_registration_path, class:"btn btn-primary" %>
+          <%= link_to "パスワード変更する", edit_end_user_registration_path, class:"btn btn-primary col-lg-offset-1" %>
         </td>
       </tr>
     </table>
   </div>
     <div class="row">
-      <div class="col-xs-5">
-        <table class="table">
+      <div class="col-sm-6">
+        <table class="table ">
           <tr>
             <td class="active">氏名</td>
             <td><%= @end_user.family_name %><%= @end_user.first_name %></td>
@@ -50,9 +50,13 @@
         <tr>
           <td><strong>配送先</strong></td>
           <td>
-            <%= link_to "一覧を見る", shipping_addresses_path, class:"btn btn-primary" %>
+            <%= link_to "一覧を見る", shipping_addresses_path, class:"btn btn-primary col-lg-offset-1" %>
             </td>
         </tr>
+      </table>
+    </div>
+    <div class="row">
+      <table class="col-xs-2">
         <tr>
           <td><strong>注文一覧</strong></td>
           <td>
