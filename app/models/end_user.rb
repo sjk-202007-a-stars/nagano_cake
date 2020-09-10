@@ -16,7 +16,6 @@ class EndUser < ApplicationRecord
 
   def active_for_authentication?
     super && (self.is_deleted == false)
-    flash[:notice] = "退会手続きが完了いたしました。"
   end
 
 end

@@ -1,11 +1,9 @@
 class Admin::OrderItemsController < Admin::Base
 
   def update
-  	@order = Order.find(params[:order_id])
-  	@order_item = @order.order_item.find(params[:item_id])
-    @order_item.update(order_item_params)
-    if @order.update(order_params)
-  	    redirect_to admin_order_path(@order)
+    order_item = OrderItem.find(params[:id])
+    if order_item.update(order_item_params)
+        redirect_back(fallback_location: root_path)
   	end
   end
 

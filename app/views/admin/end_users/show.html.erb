@@ -18,7 +18,7 @@
   <div class="row">
 		<div class="col-lg-12 col-lg-offset-1">
 			<strong class="col-lg-3 col-md-1">氏名</strong>
-			<%= @end_user.id %><%= @end_user.family_name %><%= @end_user.first_name %>
+			<%= @end_user.family_name %><%= @end_user.first_name %>
 		</div>
 	</div>
   <div class="row">
@@ -54,7 +54,7 @@
   <div class="row">
 		<div class="col-lg-6">
 			<%= link_to "編集する", edit_admin_end_user_path(@end_user), class:"btn btn-primary col-lg-offset-3" %>
-			<%= link_to "注文履歴一覧を見る", admin_orders_path, class:"btn btn-primary" %>
+			<%= link_to "注文履歴一覧を見る", admin_orders_path(order_sort: 1, end_user_id:@end_user.id), class:"btn btn-primary" %>
 		</div>
 	</div>
 </div>

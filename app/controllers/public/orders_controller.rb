@@ -1,19 +1,20 @@
 class Public::OrdersController < Public::Base
   before_action :authenticate_end_user!
-　before_action :correct_user, only: [:show]
-
+  before_action :correct_user, only: [:show]
   def new
     @order = Order.new
   end
 
-  # def index
-  # end
+  def index
+    @orders = current_end_user.orders.includes(:items)
+  end
 
-  # def show
-  # end
+  def show
+    @order = Order.find(params[:id])
+  end
 
   def create
-  	if current_end_user.cart_items.exists?
+    if current_end_user.cart_items.exists?
       @order = Order.new(order_params)
       @order.end_user_id = current_end_user.id
       @order.postage = Order::POSTAGE
@@ -88,13 +89,6 @@ class Public::OrdersController < Public::Base
   def thanks
   end
 
-  def index
-    @orders = Order.where(end_user_id: current_end_user.id)
-  end
-
-  def show
-    @order = Order.find(params[:id])
-  end
   private
 
   def order_params
@@ -103,12 +97,10 @@ class Public::OrdersController < Public::Base
       order_items_attributes: [:order_id, :item_id, :quantity, :ordering_price, :making_status]
       )
   end
-　
-　def correct_user
-   @order = Order.find(params[:id])
+  def correct_user
+    @order = Order.find(params[:id])
     if @order.end_user_id != current_end_user.id
       redirect_to orders_path
     end
   end
-
 end
