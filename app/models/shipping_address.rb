@@ -4,4 +4,8 @@ class ShippingAddress < ApplicationRecord
   validates :name, presence: true
 
   belongs_to :end_user
+
+  def postal_code_address_name
+    self.postal_code + "　" + self.address + "　" + self.name
+  end
 end

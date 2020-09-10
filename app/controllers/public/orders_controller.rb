@@ -17,28 +17,10 @@ class Public::OrdersController < Public::Base
   	if current_end_user.cart_items.exists?
       @order = Order.new(order_params)
       @order.end_user_id = current_end_user.id
-      @order.postage = Order::POSTAGE
-      # Orederモデルで定義
-
-      # 住所のラジオボタン選択に応じて引数を調整
-      @add = params[:order][:add].to_i
-      case @add
-        when 1
-          @order.postal_code = current_end_user.postal_code
-          @order.address = current_end_user.address
-          @order.name = full_name(current_end_user)
-        when 2
-          @order.postal_code = params[:order][:postal_code]
-          @order.address = params[:order][:address]
-          @order.name = params[:order][:name]
-        when 3
-          @order.postal_code = params[:order][:postal_code]
-          @order.address = params[:order][:address]
-          @order.name = params[:order][:name]
-      end
+      @order.postage = Order::POSTAGE # Orederモデルで定義
       @order.save
 
-       # send_to_addressで住所モデル検索、該当データなければ新規作成
+       # ShippingAddressで住所モデル検索、該当データなければ新規作成
       if ShippingAddress.find_by(address: @order.address).nil?
         @address = ShippingAddress.new
         @address.postal_code = @order.postal_code
