@@ -1,74 +1,65 @@
 <div class="container">
-  <div class="row">
-  	<div class="col-lg-4">
-  	  <h3>注文情報入力</h3>
-    </div>
-  </div>
+  <h3 class="item-headline">注文情報入力</h3>
+
   <!-- 支払方法 -->
   <%= form_with(model: @order, local: true, url: {action: 'confirm'}) do |f| %>
-  <div class="row">
-    <h2><strong><%= f.label :支払方法 %></strong></h2>
-    <div class="col-lg-4">
+    <div class="payment-form col-xs-10">
+      <div style="font-size: 18px;"><strong>支払方法</strong></div>
+      <div class="indent">
         <%= f.radio_button :payment_method, 0, {checked: true} %> クレジットカード
-      <br>
+        <br>
         <%= f.radio_button :payment_method, 1, {} %> 銀行振込
+      </div>
     </div>
-  </div>
 
   <!-- お届け先 -->
-  <div class="row">
-    <h2><strong><%= f.label :お届け先 %></strong></h2>
-    <div class="col-lg-8">
-      <p>
-        <label><%= f.radio_button :add, 1, checked: true, checked: "checked" %>ご自身の住所</label><br>
-        <%= current_end_user.postal_code %>
-        <%= current_end_user.address %>
-        <%= current_end_user.family_name %> <%= current_end_user.first_name %>
-      </p>
-      <p>
-        <label><%= f.radio_button :add, 2, style: "display: inline-block" %>登録済住所から選択</label><br>
-        <%= f.collection_select :address, current_end_user.shipping_addresses, :id, :postal_code_address_name %>
-      </p>
-      <p><label><%= f.radio_button :add, 3 %>新しいお届け先</label></p>
-      <div class="row">
-        <div class="col-lg-12">
+    <div class="col-xs-10">
+      <div style="font-size: 18px;"><strong>お届け先</strong></div>
+        <div class="indent new-address-form">
+          <label><%= f.radio_button :add, 1, checked: true, checked: "checked" %>ご自身の住所</label><br>
+          <div class="indent">
+            <%= current_end_user.postal_code %>
+            <%= current_end_user.address %>
+            <%= current_end_user.family_name %> <%= current_end_user.first_name %>
+          </div>
+        </div>
+        <div class="indent new-address-form">
+          <label><%= f.radio_button :add, 2, style: "display: inline-block" %>登録済住所から選択</label><br>
+          <%= f.collection_select :address, current_end_user.shipping_addresses, :id, :postal_code_address_name, {}, class:"form-control" %>
+        </div>
+        <div class="indent new-address-form">
+          <label><%= f.radio_button :add, 3 %>新しいお届け先</label>
+        </div>
+        <div class="form-horizontal indent new-address-form">
           <%= f.fields_for :new_add do |na| %>
-            <div class="row">
-              <div class="col-lg-3">
-                <strong>郵便番号(ハイフンなし)</strong>
-              </div>
-              <div class="col-lg-6">
-                <%= na.text_field :postal_code, class: 'form-control' %>
+            <div class="form-group indent">
+              <%= na.label :postal_code, '郵便番号(ハイフンなし)', class:"col-xs-3" %>
+              <div class="col-xs-6">
+                <%= na.text_field :postal_code, class:"form-control" %>
               </div>
             </div>
-            <div class="row">
-              <div class="col-lg-3">
-                <strong>住所</strong>
-              </div>
-              <div class="col-lg-6">
-                <%= na.text_field :address, class: 'form-control' %>
+            <div class="form-group indent">
+              <%= na.label :address, '住所', class:"col-xs-3" %>
+              <div class="col-xs-8">
+                <%= na.text_field :address, class:"form-control" %>
               </div>
             </div>
-            <div class="row">
-              <div class="col-lg-3">
-                <strong>宛名</strong>
-              </div>
-              <div class="col-lg-6">
-                <%= na.text_field :name, class: 'form-control' %>
+            <div class="form-group indent">
+              <%= na.label :name, '宛名', class:"col-xs-3" %>
+              <div class="col-xs-6">
+                <%= na.text_field :name, class:"form-control" %>
               </div>
             </div>
           <% end %>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- サブミットボタン -->
-  <div class="row">
-    <div class="col-lg-2 offset-lg-7">
-      <%= f.submit "確認画面へ進む", class: "btn btn-info"%>
+    <!-- サブミットボタン -->
+    <div class="center-block">
+      <%= f.submit "確認画面へ進む", class: "btn btn-info btn-lg"%>
     </div>
-  </div>
   <% end %>
 </div>
 
