@@ -44,7 +44,7 @@
 			  <tbody>
 					<tr>
 						<td  class="active">商品合計</td>
-						<td><%= @order.subtotal_price %>円</td>
+						<td><%= @order.subtotal_price.to_s(:delimited) %>円</td>
 					</tr>
 					<tr>
 						<td class="active">配送料</td>
@@ -52,7 +52,7 @@
 					</tr>
 					<tr>
 						<th class="active">ご請求金額</th>
-						<td><%= @order.subtotal_price+@order.postage %>円</td>
+						<td><%= (@order.subtotal_price+@order.postage).to_s(:delimited) %>円</td>
 					</tr>
 				</tbody>
 			</table>
@@ -79,7 +79,7 @@
 					 		<td><%= order_item.item.name %></td>
 					 		<td><%= order_item.item.price_with_tax %>円</td>
 				 			<td><%= order_item.quantity %></td>
-				 			<td><%= order_item.ordering_price %>円</td>
+				 			<td><%= order_item.ordering_price.to_s(:delimited) %>円</td>
 				 		</tr>
 				 	<% end %>
 				</tbody>
