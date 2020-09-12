@@ -25,9 +25,7 @@ RSpec.describe 'admin_registration' do
     expect(page).to have_content '商品一覧'
 
     #商品新規登録ページに遷移する
-    # find(".fa-plus-square").click
-    #アイコンとaタグがずれているためかリンクをクリックできないので、直接新規登録画面に遷移する
-    visit new_admin_item_path
+    find("#new_admin_item").click
     expect(page).to have_content '商品新規登録'
 
     #必要事項を入力し商品を新規作成する
@@ -48,9 +46,7 @@ RSpec.describe 'admin_registration' do
     expect(page).to have_content 'チョコレートケーキ'
 
     #新規登録ボタンを押下する(2回目)
-    # find(".fa-plus-square").click
-    #アイコンとaタグがずれているためかリンクをクリックできないので、直接新規登録画面に遷移する
-    visit new_admin_item_path
+    find("#new_admin_item").click
     expect(page).to have_content '商品新規登録'
 
     #必要事項を入力し商品を新規作成する
