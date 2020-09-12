@@ -1,0 +1,9 @@
+<div class="sideber">
+  <div class="search"><strong>商品名検索</strong>
+    <%= form_tag(search_path, method: :get) do %>
+      <%= select(@search_content, :search_method, [["完全一致","perfect_match"], ["前方一致","forward_match"], ["後方一致","backward_match"], ["部分一致","partial_match"]]) %>
+      <%= text_field(@search_content, :search_word)%>
+      <%= submit_tag "検索" %>
+    <% end %>
+  </div>
+</div>

@@ -18,6 +18,7 @@ Rails.application.routes.draw do
 	get '/end_users/confirm', to: 'public/end_users#confirm'
 	post '/orders/confirm', to: 'public/orders#confirm'
   delete '/cart_items/destroy_all', to: 'public/cart_items#destroy_all'
+  get '/admin/searches', to: 'admin/searches#search'
   
   scope module: 'public' do
     resource :end_user, only: [:show, :edit, :update]
