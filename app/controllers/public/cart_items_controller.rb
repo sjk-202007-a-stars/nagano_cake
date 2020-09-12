@@ -1,4 +1,5 @@
 class Public::CartItemsController < Public::Base
+  before_action :authenticate_end_user!
   def index
     @cart_items = CartItem.where(end_user_id: current_end_user.id)
     @subtotal_price = 0 #ビューで使う変数の初期化
