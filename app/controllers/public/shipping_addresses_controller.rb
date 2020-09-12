@@ -1,4 +1,5 @@
 class Public::ShippingAddressesController < Public::Base
+  before_action :authenticate_end_user!
   def index
     @shipping_addresses = ShippingAddress.where(end_user_id: current_end_user.id)
     @shipping_address = ShippingAddress.new
