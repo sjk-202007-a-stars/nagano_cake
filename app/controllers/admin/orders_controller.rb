@@ -17,9 +17,8 @@ class Admin::OrdersController < Admin::Base
   end
   def update
   	@order = Order.find(params[:id])
-  	if @order.update(order_params)
+  	@order.update(order_params)
       redirect_back(fallback_location: root_path)
-  	end
   end
 
   private

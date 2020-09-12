@@ -21,5 +21,11 @@ class Order < ApplicationRecord
 
   enum payment_method: { クレジットカード: 0, 銀行振込: 1 }
   
-
+  after_update :change_status
+  protected
+  def change_status
+    if self.status == "入金確認"
+      self.order_items.update_all(making_status: 1)
+    end
+  end
 end
