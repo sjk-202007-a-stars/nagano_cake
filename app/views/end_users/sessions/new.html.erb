@@ -3,6 +3,12 @@
     <div class="col-lg-7 col-lg-offset-2">
 
       <h4>会員の方はこちらからログイン</h4>
+      <% if notice %>
+        <p class="alert alert-notice"><%= notice %></p>
+      <% end %>
+      <% if alert %>
+        <p class="alert alert-error"><%= alert %></p>
+      <% end %>
 
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <div class="form-horizontal">

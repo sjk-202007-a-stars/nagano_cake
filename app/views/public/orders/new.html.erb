@@ -20,7 +20,7 @@
     <h2><strong><%= f.label :お届け先 %></strong></h2>
     <div class="col-lg-8">
       <p>
-        <label><%= f.radio_button :add, 1, checked: true, checked: "checked" %>ご自身の住所</label><br>
+        <label><%= f.radio_button :add, 1, checked: true %>ご自身の住所</label><br>
         <%= current_end_user.postal_code %>
         <%= current_end_user.address %>
         <%= current_end_user.family_name %> <%= current_end_user.first_name %>
