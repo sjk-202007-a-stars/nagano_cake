@@ -1,9 +1,12 @@
 body {
 	background: linear-gradient(120.21314969931052deg, rgba(222, 237, 252,1) 15.507440476190474%,rgba(222, 236, 251,1) 15.507440476190474%,rgba(239, 228, 247,1) 59.614583333333336%);
+	display: flex;
+  	flex-direction: column;
+  	min-height: 100vh;
 }
 
 .main {
-	margin: 90px auto;
+	margin: 70px auto;
 }
 
 .sideber {
@@ -220,8 +223,8 @@ body {
 }
 
 .text-center {
-  padding-top: 50px;
-  font-size: 20px;
+  	padding-top: 50px;
+  	font-size: 20px;
 }
 
 .user-info {
@@ -230,6 +233,21 @@ body {
 
 .order-item {
 	vertical-align: middle !important;
+}
+
+footer {
+	height: 80px;
+	margin-top: auto;
+}
+
+.sosial {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+}
+
+.sosial > i {
+	margin-right: 30px;
 }
 
 #error_explanation {
