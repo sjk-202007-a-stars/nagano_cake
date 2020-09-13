@@ -1,1 +1,71 @@
-<%= content_for?(:content) ? yield(:content) : yield %>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>NaganoCake</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css">
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <header>
+      <div class="container-fluid header">
+        <nav class="nav navbar-nav navbar-left nav-image">
+          <% if admin_signed_in? %>
+            <%= link_to(admin_path, id: "logo") do %>
+              <%= image_tag "logo.png" %>
+            <% end %>
+          <% else %>
+            <%= link_to(root_path, id: "logo") do %>
+              <%= image_tag "logo.png" %>
+            <% end %>
+          <% end %>
+        </nav>
+        <nav>
+          <ul class="nav navbar-nav navbar-right">
+            <!-- 会員でログインしている時 -->
+            <% if end_user_signed_in? %>
+              <li class="navber-text">ようこそ、<%= current_end_user.family_name %>さん！</li>
+              <li class="nav-item"><%= button_to 'マイページ', end_user_path, method: :get, class:"btn" %></li>
+              <li class="nav-item"><%= button_to '商品一覧', items_path, method: :get, class:"btn" %></li>
+              <li class="nav-item"><%= button_to 'カート', cart_items_path, method: :get, class:"btn" %></li>
+              <li class="nav-item"><%= button_to 'ログアウト', destroy_end_user_session_path, method: :delete, class:"btn" %></li>
+
+            <!-- 管理者でログインしている時 -->
+            <% elsif admin_signed_in?%>
+              <li class="nav-item"><%= button_to ' 商品一覧', admin_items_path, method: :get, class:"btn" %></li>
+              <li class="nav-item"><%= button_to ' 会員一覧', admin_end_users_path, method: :get, class:"btn" %></li>
+              <li class="nav-item"><%= button_to ' 注文履歴一覧', admin_orders_path, method: :get, class:"btn" %></li>
+              <li class="nav-item"><%= button_to ' ジャンル一覧', admin_genres_path, method: :get, class:"btn" %></li>
+              <li class="nav-item"><%= button_to ' ログアウト', destroy_admin_session_path, method: :delete, class:"btn" %></li>
+              <div class="search-box" style="margin-top: 70px; text-align: right;">
+                <%= form_tag(admin_searches_path, method: :get) do %>
+                <%= text_field_tag (:word) %>
+                <%= select_tag 'range' ,options_for_select([['会員名', '1'], ['商品名', '2']]) %>
+                <%= submit_tag "検索" %>
+                <% end %>
+              </div>
+            <!-- ログインしていない時 -->
+            <% else %>
+              <li class="nav-item"><%= button_to 'About', about_path, method: :get, class:"btn" %></li>
+              <li class="nav-item"><%= button_to '商品一覧', items_path, method: :get, class:"btn" %></li>
+              <li class="nav-item"><%= button_to '新規登録', new_end_user_registration_path, method: :get, class:"btn" %></li>
+              <li class="nav-item"><%= button_to 'ログイン', new_end_user_session_path, method: :get, class:"btn" %></li>
+            <% end %>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <%= yield %>
+
+    <footer>
+      <div class="sosial">
+        <i class="fab fa-instagram"></i>
+        <i class="fab fa-twitter"></i>
+        <i class="fab fa-facebook"></i>
+      </div>
+    </footer>
+  </body>
+</html>

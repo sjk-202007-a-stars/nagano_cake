@@ -1,0 +1,51 @@
+<div class="container">
+    <h3 class="item-headline"><%= @end_user.family_name %><%= @end_user.first_name %>さんの会員詳細</h3>
+
+	<%= form_for @end_user,:url => {controller: "admin/end_users", action: "update"} do |f| %>
+
+		<div class="form-horizontal col-xs-8 user-info-table">
+      		<div class="form-group">
+				<strong class="col-xs-3">会員ID</strong>
+				<p><%= @end_user.id %></p>
+			</div>
+			<div class="form-group">
+				<label class="col-xs-3">氏名</label>
+				<%= f.text_field :family_name, class:"col-xs-2" %>
+				<%= f.text_field :first_name, class:"col-xs-2 col-xs-offset-1" %>
+			</div>
+			<div class="form-group">
+				<label class="col-xs-3">フリガナ</label>
+				<%= f.text_field :family_name_kana, class:"col-xs-2" %>
+				<%= f.text_field :first_name_kana, class:"col-xs-2 col-xs-offset-1" %>
+			</div>
+			<div class="form-group">
+				<label class="col-xs-3">郵便番号</label>
+				<%= f.text_field :postal_code, class:"col-xs-2" %>
+			</div>
+			<div class="form-group">
+				<label class="col-xs-3">住所</label>
+				<%= f.text_field :address, class:"col-xs-5" %>
+			</div>
+			<div class="form-group">
+				<label class="col-xs-3">電話番号</label>
+				<%= f.text_field :phone_number, class:"col-xs-3" %>
+			</div>
+			<div class="form-group">
+				<label class="col-xs-3">メールアドレス</label>
+				<%= f.text_field :email, class:"col-xs-3" %>
+			</div>
+			<div class="form-group">
+				<label class="col-xs-3">会員ステータス</label>
+				<%= f.radio_button :is_deleted, false %>
+				<%= f.label :is_deleted, "有効" %>
+				<%= f.radio_button :is_deleted, true %>
+				<%= f.label :is_deleted, "退会済み" %>
+			</div>
+		</div>
+
+		<div class="col-xs-12">
+			<%= f.submit "編集内容を保存する", class:"btn btn-primary" %>
+			<%= link_to "戻る", admin_end_user_path(@end_user), class:"btn btn-default" %>
+		</div>
+	<% end %>
+</div>

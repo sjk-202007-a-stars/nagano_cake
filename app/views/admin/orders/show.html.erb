@@ -1,0 +1,69 @@
+<!-- admin/orders/show -->
+<div class="container">
+	<h3 class="item-headline">注文履歴詳細</h3><br>
+	<div class="order-info col-xs-9">
+		<strong class="col-xs-3">購入者</strong>
+		<%= link_to admin_end_user_path(@order.end_user) do %>
+		<%= @order.end_user.family_name %><%= @order.end_user.first_name %>
+		<% end %>
+	</div>
+<!-- 購入者情報 -->
+	<div class="order-info col-xs-9">
+		<strong class="col-xs-3">配送先</strong>
+			〒<%= @order.postal_code %>　<%= @order.address %>　　　
+			<%= @order.name %>
+	</div>
+	<div class="order-info col-xs-9">
+		<strong class="col-xs-3">支払方法</strong>
+		<%= @order.payment_method %>
+	</div>
+	<div class="order-info col-xs-9">
+		<strong class="col-xs-3">注文ステータス</strong>
+		<div class="col-xs-3">
+			<%= form_for [:admin, @order] do |f| %>
+				<%= f.select :status, Order.statuses.keys, class:"form-control" %>
+  		    <%= f.submit '更新', class:"btn btn-primary btn-xs" %>
+  	        <% end %>
+		</div>
+	</div>
+
+	<!-- 商品内訳 -->
+	<div class="order-table col-lg-7">
+		<table class="table">
+		  <thead class="thead-dark">
+		    <tr class="active">
+		      <th>商品名</th>
+		      <th>単価(税込)</th>
+		      <th>数量</th>
+		      <th>小計</th>
+		      <th>製作ステータス</th>
+		    </tr>
+		  </thead>
+			<tbody>
+				<% @order.order_items.each do |order_item| %>
+					<tr>
+						<td>
+							<%= order_item.item.name %>
+						</td>
+				 		<td><%= order_item.item.price_with_tax %></td>
+			  		<td><%= order_item.quantity %></td>
+			  		<td><%= order_item.ordering_price %></td>
+			  		<td>
+							<%= form_for [:admin, order_item] do |f| %>
+								<%= f.select :making_status, OrderItem.making_statuses.keys, class:"form-control" %>
+			      			<%= f.submit '更新', class:"btn btn-primary btn-xs" %>
+							<% end %>
+						</div>
+			  		</td>
+				  </tr>
+				<% end %>
+		  </tbody>
+		</table>
+	</div>
+		<!-- 合計金額 -->
+	<div class="price-table col-xs-4 col-xs-offset-1">
+		<div class="takasa"><strong class="col-xs-5">商品合計</strong><%= @order.subtotal_price %>円</div>
+		<div class="takasa"><strong class="col-xs-5">送料</strong><%= @order.postage %>円</div>
+		<div class="takasa"><strong class="col-xs-5">請求金額合計</strong><strong class="text-left"><%= @order.subtotal_price+@order.postage %>円</strong></div>
+	</div>
+</div>

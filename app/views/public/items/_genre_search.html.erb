@@ -1,0 +1,12 @@
+<div class="col-xs-3">
+  <div class="sideber">
+    <ul class="genre">
+      <li class="genre-head"><strong>ジャンル検索</strong></li>
+      <% genres.each do |genre| %>
+      <li class="genre-item">
+        <%= link_to genre.name, items_path(genre_id: genre.id) %>
+      </li>
+      <% end %>
+    </ul>
+  </div>
+</div>

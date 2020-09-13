@@ -1,3 +1,3 @@
-class Admin::Base < ApplicationController
-     layout 'public'
+class Public::Base < ApplicationController
+  layout 'public'
 end

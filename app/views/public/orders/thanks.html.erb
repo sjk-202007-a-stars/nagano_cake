@@ -1,0 +1,13 @@
+<div class="thanks-text">
+	<p>ご購入ありがとうございました！</p>
+	<p style="font-size: 14px;">このページは３秒後に自動でトップページへ移動します。</p>
+</div>
+<div class="center-block">
+  自動で移動しない場合は<%= link_to 'こちら', root_path %>
+</div>
+
+<script>
+  setTimeout(function(){
+    location.href="/";
+  },3000);
+</script>
