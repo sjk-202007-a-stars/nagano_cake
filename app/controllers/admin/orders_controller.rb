@@ -8,7 +8,7 @@ class Admin::OrdersController < Admin::Base
     when "2"
       @orders = Order.where("created_at >= ?", Time.zone.now.beginning_of_day)
      else
-      @orders = Order.all
+      @orders = Order.page(params[:page]).per(10)
     end
   end
 

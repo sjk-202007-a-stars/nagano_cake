@@ -1,8 +1,8 @@
 <!-- admin/orders/index -->
 <div class="container">
-  <div class="row">
-		<h4>注文履歴一覧</h4>
-		<table class="table">
+  <div class="col-xs-10 col-xs-offset-1">
+		<h3 class="item-headline">注文履歴一覧</h3>
+		<table class="order-table table">
 	    <thead class="thead-dark">
 	      <tr class="active">
 	        <th>購入日時</th>
@@ -26,5 +26,6 @@
 				<% end %>
 		  </tbody>
 		</table>
+		<%= paginate @orders %>
 	</div>
 </div>

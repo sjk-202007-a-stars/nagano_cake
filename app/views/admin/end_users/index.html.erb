@@ -1,20 +1,15 @@
 <div class="container">
-  <div class="row">
-    <div class="col-lg-9 col-lg-offset-1">
-      <h4>会員一覧</h4>
-    </div>
-  </div>
-<div class="col-lg-10 col-lg-offset-1">
-	<table class="table">
-	  <thead class="thead-dark">
+    <h3 class="item-headline">会員一覧</h3>
+
+	<div class="col-lg-10 col-lg-offset-1 user-info-table">
+	<table class="table table-hover">
 	    <tr class="active">
-        <th>会員ID</th>
-        <th>氏名</th>
-        <th>メールアドレス</th>
-        <th>ステータス</th>
+		    <th>会員ID</th>
+		    <th>氏名</th>
+		    <th>メールアドレス</th>
+		    <th>ステータス</th>
 	    </tr>
-	  </thead>
-	  <tbody>
+	    <tbody>
 			<% @end_users.each do |end_user| %>
 				<tr>
 					<td><%= end_user.id %></td>
@@ -33,6 +28,7 @@
 			        </td>
 			    </tr>
 			<% end %>
-	  </tbody>
+		</tbody>
 	</table>
+	<%= paginate @end_users %>
 </div>
