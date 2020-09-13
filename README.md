@@ -1,24 +1,33 @@
-# README
+# ながのCake
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+![ロゴ](https://github.com/sjk-202007-a-stars/nagano_cake/blob/master/app/assets/images/logo.png)
 
-Things you may want to cover:
+## 概要
+- dmmwebcampのチーム開発で制作したECサイト
+- 長野県にある小さな洋菓子店『ながのCake』の商品を通販するためのECサイト
 
-* Ruby version
+## 機能概要
+- 会員
+  - 登録、退会
+  - 商品購入
+  - 会員情報編集
+  - 購入履歴閲覧
+- 管理者
+  - 商品管理
+  - ジャンル管理
+  - 注文情報管理
+  - 顧客管理
+  
+## 追加機能
+- 商品名、会員名検索機能
+- 住所自動検索機能
+- 商品画像プレビュー機能
+- ランキング機能
+- 自動ページ移動
 
-* System dependencies
+## バージョン
+- Ruby(2.5.7)
+- Rails(5.2.4.3)
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## 制作チーム
+- STaRS
