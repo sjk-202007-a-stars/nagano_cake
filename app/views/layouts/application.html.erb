@@ -13,11 +13,7 @@
     <header>
       <div class="container-fluid header">
         <nav class="nav navbar-nav navbar-left nav-image">
-          <% if end_user_signed_in? %>
-            <%= link_to(root_path, id: "logo") do %>
-              <%= image_tag "logo.png" %>
-            <% end %>
-          <% elsif admin_signed_in? %>
+          <% if admin_signed_in? %>
             <%= link_to(admin_path, id: "logo") do %>
               <%= image_tag "logo.png" %>
             <% end %>
