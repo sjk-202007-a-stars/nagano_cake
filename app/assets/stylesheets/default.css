@@ -1,8 +1,7 @@
 body {
 	background: linear-gradient(120.21314969931052deg, rgba(222, 237, 252,1) 15.507440476190474%,rgba(222, 236, 251,1) 15.507440476190474%,rgba(239, 228, 247,1) 59.614583333333336%);
-	display: flex;
-  	flex-direction: column;
   	min-height: 100vh;
+  	position: relative;
 }
 
 .main {
@@ -238,6 +237,9 @@ body {
 footer {
 	height: 80px;
 	margin-top: auto;
+	position: fixed;
+	bottom: 0;
+	right: 0;
 }
 
 .sosial {

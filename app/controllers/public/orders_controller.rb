@@ -6,7 +6,7 @@ class Public::OrdersController < Public::Base
   end
 
   def index
-    @orders = current_end_user.orders.page(params[:page]).per(7)
+    @orders = current_end_user.orders.all.order(created_at: :desc).page(params[:page]).per(7)
   end
 
   def show

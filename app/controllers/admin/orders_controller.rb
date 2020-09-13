@@ -4,11 +4,11 @@ class Admin::OrdersController < Admin::Base
     case params[:order_sort]
     when "1"
       @end_user = EndUser.find(params[:end_user_id])
-      @orders = @end_user.orders
+      @orders = @end_user.orders.all.order(created_at: :desc).page(params[:page]).per(10)
     when "2"
-      @orders = Order.where("created_at >= ?", Time.zone.now.beginning_of_day)
+      @orders = Order.where("created_at >= ?", Time.zone.now.beginning_of_day).all.order(created_at: :desc).page(params[:page]).per(10)
      else
-      @orders = Order.page(params[:page]).per(10)
+      @orders = Order.all.order(created_at: :desc).page(params[:page]).per(10)
     end
   end
 

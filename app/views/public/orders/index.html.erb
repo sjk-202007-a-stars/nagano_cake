@@ -18,9 +18,9 @@
 				<% @orders.each do |order| %>
 					<tr>
 						<td class="order-item"><%= order.created_at %></td>
-				 		<td class="order-item">〒<%= order.end_user.postal_code %><br>
-				 			<%= order.end_user.address %><br>
-				 			<%= order.end_user.family_name %><%= order.end_user.first_name %>
+				 		<td class="order-item">〒<%= order.postal_code %><br>
+				 			<%= order.address %><br>
+				 			<%= order.name %>
 				 		</td>
 			 			<td class="order-item">
 			 				<% order.items.each do |item| %>
