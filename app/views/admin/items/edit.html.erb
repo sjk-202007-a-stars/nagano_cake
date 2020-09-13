@@ -6,7 +6,7 @@
     <div class="col-xs-4">
       <div class="item-img-field">
         <%= f.label :image do %>
-          <%= image_tag "no_image.jpg", width:"250px", class:"item-img" %>
+          <%= attachment_image_tag @item, :image, fallback:"no_image.jpg", width:"250px", class:"item-img" %>
           <%= f.attachment_field :image %>
         <% end %>
       </div>
