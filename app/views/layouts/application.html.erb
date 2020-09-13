@@ -13,8 +13,14 @@
     <header>
       <div class="container-fluid header">
         <nav class="nav navbar-nav navbar-left nav-image">
-          <%= link_to(root_path, id: "logo") do %>
-          <%= image_tag "logo.png" %>
+          <% if admin_signed_in? %>
+            <%= link_to(admin_path, id: "logo") do %>
+              <%= image_tag "logo.png" %>
+            <% end %>
+          <% else %>
+            <%= link_to(root_path, id: "logo") do %>
+              <%= image_tag "logo.png" %>
+            <% end %>
           <% end %>
         </nav>
         <nav>
@@ -52,9 +58,6 @@
         </nav>
       </div>
     </header>
-    <% flash.each do |key, value| %>
-      <%= content_tag(:div, value, class:key) %>
-    <% end %>
     <%= yield %>
   </body>
 </html>
