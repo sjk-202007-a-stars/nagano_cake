@@ -19,10 +19,12 @@
 			</div>
 
 			<!-- オススメ商品の表示 -->
+      <% rank = 1 %>
 			<div class="recommendation">
 			<h2 class="recommendation-head"><strong>オススメ商品</strong></h2>
 			<% @items.each do |item| %>
       			<div class="item-wrapper">
+              <p><strong><%= rank %>位</strong></p>
         			<%= link_to item_path(item) do %>
           				<div class="item-image">
             			<%= attachment_image_tag item, :image, :fill, 150, 100, fallback: "no_image.jpg", size: '150x100' %>
@@ -33,6 +35,7 @@
           				</div>
         			<% end %>
       			</div>
+            <% rank += 1 %>
     		<% end %>
     		<div class="col-xs-9 col-xs-offset-9">
     			<%= link_to 'もっと見る>', items_path %>
